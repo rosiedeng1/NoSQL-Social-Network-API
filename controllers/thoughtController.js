@@ -2,14 +2,13 @@ const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
 module.exports = {
-  // Get all thought
+  // Get all thoughts
   async getThoughts(req, res) {
     try {
       const thoughts = await Thought.find();
 
       const thoughtObj = {
         thoughts,
-        headCount: await headCount(),
       };
 
       res.json(thoughtObj);
@@ -30,7 +29,6 @@ module.exports = {
 
       res.json({
         thought,
-        // grade: await grade(req.params.studentId),
       });
     } catch (err) {
       console.log(err);
@@ -97,7 +95,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a student
+  // Remove reaction from a thought
   async removeReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
