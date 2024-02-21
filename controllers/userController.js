@@ -36,7 +36,7 @@ module.exports = {
    // Update a user
    async updateUser(req, res) {
     try {
-      const course = await User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $set: req.body },
         { runValidators: true, new: true }
@@ -69,7 +69,7 @@ module.exports = {
     // Controller for adding a friend using $addToSet 
       async addFriend(req, res) {
         try {
-          const course = await User.findOneAndUpdate(
+          const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
             { $addToSet: {friends: req.params.friendId} },
             { runValidators: true, new: true }
@@ -87,7 +87,7 @@ module.exports = {
       // Controller for deleting a friend using $pull
       async deleteFriend(req, res) {
         try {
-          const course = await User.findOneAndUpdate(
+          const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
             { $pull: {friends: req.params.friendId} },
             { runValidators: true, new: true }
