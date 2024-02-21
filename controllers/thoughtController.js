@@ -47,7 +47,7 @@ module.exports = {
      // Update a user
      async updateThought(req, res) {
       try {
-        const course = await Thought.findOneAndUpdate(
+        const thought = await Thought.findOneAndUpdate(
           { _id: req.params.thoughtId },
           { $set: req.body },
           { runValidators: true, new: true }
@@ -79,7 +79,7 @@ module.exports = {
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought deleted',
+          message: 'Thought deleted'
         });
       }
 
