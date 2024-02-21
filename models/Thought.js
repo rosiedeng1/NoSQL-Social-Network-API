@@ -1,5 +1,8 @@
 const { Schema, Types, model } = require('mongoose');
+// Imported format.js for time stamps 
+const formatDate = require('../utils/format.js')
 
+// Reaction field's subdocument schema in Thought model 
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -18,6 +21,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (date) => formatDate(date) 
     },
   },
   {

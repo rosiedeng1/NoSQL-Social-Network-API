@@ -66,11 +66,12 @@ module.exports = {
         res.status(500).json(err);
       }
     },
+    // Controller for adding a friend using $addToSet 
       async addFriend(req, res) {
         try {
           const course = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $addToSet: friends: req.params.friendId },
+            { $addToSet: {friends: req.params.friendId} },
             { runValidators: true, new: true }
           );
     
@@ -83,11 +84,12 @@ module.exports = {
           res.status(500).json(err);
         }
       },
+      // Controller for deleting a friend using $pull
       async deleteFriend(req, res) {
         try {
           const course = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: friends: req.params.friendId },
+            { $pull: {friends: req.params.friendId} },
             { runValidators: true, new: true }
           );
     

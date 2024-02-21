@@ -44,6 +44,24 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+     // Update a user
+     async updateThought(req, res) {
+      try {
+        const course = await Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $set: req.body },
+          { runValidators: true, new: true }
+        );
+  
+        if (!thought) {
+          res.status(404).json({ message: 'No thought with this id!' });
+        }
+  
+        res.json(thought);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    },
   // Delete a thought and remove them from the user
   async deleteThought(req, res) {
     try {
@@ -61,7 +79,7 @@ module.exports = {
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought deleted, but no users found',
+          message: 'Thought deleted',
         });
       }
 
@@ -90,7 +108,7 @@ module.exports = {
       if (!thought) {
         return res
           .status(404)
-          .json({ message: 'No thought found with that ID :(' });
+          .json({ message: 'No reaction found with that ID :(' });
       }
 
       res.json(thought);
@@ -111,7 +129,7 @@ module.exports = {
       if (!thought) {
         return res
           .status(404)
-          .json({ message: 'No thought found with that ID :(' });
+          .json({ message: 'No reaction found with that ID :(' });
       }
 
       res.json(thought);
