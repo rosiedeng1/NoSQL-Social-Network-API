@@ -13,7 +13,8 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email address']
     },
     thoughts: [
       {
@@ -36,8 +37,7 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
-
+// // Virtual property `friendCount` that gets the amount of friends per user(Friend count number)
 userSchema
   .virtual('friendCount')
   // Getter

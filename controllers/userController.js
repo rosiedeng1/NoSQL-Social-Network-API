@@ -66,4 +66,14 @@ module.exports = {
         res.status(500).json(err);
       }
     },
-};
+      // Add friend
+    // async addFriend(req, res) {
+    //   try {
+    //     const user = await User.findOneAndUpdate({ _id: req.params.friendId });
+  
+    //     if (!user) {
+    //       res.status(404).json({ message: 'No user with that ID' });
+    //     }
+    //   }
+    // }, 
+  }

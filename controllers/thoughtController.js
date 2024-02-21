@@ -77,9 +77,12 @@ module.exports = {
     console.log('You are adding a reaction');
     console.log(req.body);
 
+    // const reaction = {...req.body, "reactionId": new ObjectId()}
+
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
+        // { $addToSet: { reactions: reaction } },
         { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
@@ -92,6 +95,7 @@ module.exports = {
 
       res.json(thought);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },
